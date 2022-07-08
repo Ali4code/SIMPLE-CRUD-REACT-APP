@@ -38,14 +38,15 @@ const Navbar: FC = (): ReactElement => {
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Typography
-            variant="h6"
+            variant="h5"
             noWrap
+            color="#FFF"
             sx={{
               mr: 2,
               display: { xs: "none", md: "flex" },
             }}
           >
-            Setvi
+            Setvi Test
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton

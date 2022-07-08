@@ -54,7 +54,7 @@ const theme = createTheme({
     typography: {
         useNextVariants: true,
         allVariants: {
-            color: '#FFF'
+            color: '#01294b'
         }
     },
     components: {
