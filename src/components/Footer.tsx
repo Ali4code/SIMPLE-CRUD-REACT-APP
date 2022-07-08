@@ -1,33 +1,34 @@
 import React, { FC, ReactElement } from "react";
-import { Box, Container, Grid, Typography } from "@mui/material";
+import { styled } from "@mui/system";
+import {  Container, Grid, Typography } from "@mui/material";
 
- const Footer: FC = (): ReactElement => {
+const Footer: FC = (): ReactElement => {
   return (
-    <Box
-      sx={{
-        width: "100%",
-        height: "auto",
-        backgroundColor: "primary.main",
-        paddingTop: "1rem",
-        paddingBottom: "1rem",
-      }}
-    >
+    <CustomDiv>
       <Container maxWidth="lg">
         <Grid container direction="column" alignItems="center">
           <Grid item xs={12}>
-            <Typography  variant="h5">
-              React Starter App
-            </Typography>
+            <Typography variant="h5" color="#FFF">Setvi React Test</Typography>
           </Grid>
           <Grid item xs={12}>
-            <Typography variant="subtitle1">
+            <Typography variant="subtitle1" color="#FFF">
               {`${new Date().getFullYear()} | React | Material UI | React Router`}
             </Typography>
           </Grid>
         </Grid>
       </Container>
-    </Box>
+    </CustomDiv>
   );
 };
+
+export const CustomDiv = styled("div")(({ theme }) => ({
+  position: "fixed",
+  bottom: "0",
+  width: "100%",
+  height: "auto",
+  backgroundColor: theme.palette.primary.main,
+  paddingTop: "1rem",
+  paddingBottom: "1rem",
+}));
 
 export default Footer;

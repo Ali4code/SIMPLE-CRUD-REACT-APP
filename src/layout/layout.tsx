@@ -1,4 +1,4 @@
-import { Box } from "@mui/system";
+import { styled } from "@mui/system";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 
@@ -8,14 +8,16 @@ interface Props {
 
 const Layout = ({ children }: Props) => {
   return (
-    <>
-    <Box height="100vh" display="flex" flexDirection="column">
+    <CustomDiv>
       <Navbar />
-        {children}
+      {children}
       <Footer />
-      </Box>
-    </>
+    </CustomDiv>
   );
 };
 
+export const CustomDiv = styled("div")(({ theme }) => ({
+  display: "relative",
+  height: "100vh",
+}));
 export default Layout;
