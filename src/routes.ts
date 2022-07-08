@@ -32,7 +32,7 @@ export const routes: Array<Route> = [
     },
     {
         key: 'itemDetails-route',
-        title: 'ItemDetails',
+        title: 'Item Details',
         path: '/item-details',
         enabled: true,
         component: ItemDetails
