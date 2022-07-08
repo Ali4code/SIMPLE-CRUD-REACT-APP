@@ -24,12 +24,15 @@ const Navbar: FC = (): ReactElement => {
     setAnchorElNav(null);
   };
 
+  const navRoutes = [...routes];
+  navRoutes.pop();
+
   return (
     <Box
       sx={{
         width: "100%",
         height: "auto",
-        backgroundColor: "secondary.main",
+        backgroundColor: "primary.main",
       }}
     >
       <Container maxWidth="xl">
@@ -42,7 +45,7 @@ const Navbar: FC = (): ReactElement => {
               display: { xs: "none", md: "flex" },
             }}
           >
-            Starter App
+            Setvi
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
@@ -73,7 +76,7 @@ const Navbar: FC = (): ReactElement => {
                 display: { xs: "block", md: "none" },
               }}
             >
-              {routes.map((page) => (
+              {navRoutes.map((page) => (
                 <Link
                   key={page.key}
                   component={NavLink}
@@ -107,12 +110,12 @@ const Navbar: FC = (): ReactElement => {
                 marginLeft: "1rem",
               }}
             >
-              {routes.map((page) => (
+              {navRoutes.map((page) => (
                 <Link
                   key={page.key}
                   component={NavLink}
                   to={page.path}
-                  color="black"
+                  color="#FFF"
                   underline="none"
                   variant="button"
                   sx={{ fontSize: "large", marginLeft: "2rem" }}

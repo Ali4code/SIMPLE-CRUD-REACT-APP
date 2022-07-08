@@ -18,13 +18,13 @@ const theme = createTheme({
     palette: {
         common: { black: '#191A23', white: '#FFFFFF' },
         primary: {
-            main: '#46B7F7',
+            main: '#1e96fc',
             light: '#6A9DCE',
             dark: '#213958',
             contrastText: '#fff'
         },
         secondary: {
-            main: '#023047',
+            main: '#01294b',
             light: '#FAC8BB',
             contrastText: '#707070'
         },
@@ -54,7 +54,7 @@ const theme = createTheme({
     typography: {
         useNextVariants: true,
         allVariants: {
-            color: '#023047'
+            color: '#FFF'
         }
     },
     components: {
