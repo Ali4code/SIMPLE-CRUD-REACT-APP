@@ -1,10 +1,9 @@
+import AppThemeProvider from "./provider/ThemeProvider";
 
 function App() {
-  return (
-    <div className="App">
-
-    </div>
-  );
+  return <AppThemeProvider>
+    
+  </AppThemeProvider>;
 }
 
 export default App;
