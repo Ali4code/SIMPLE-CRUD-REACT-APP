@@ -1,7 +1,7 @@
 // pages
 import Home from "./pages/Home";
 import Create from "./pages/Create";
-import Details from "./pages/Detials";
+import Details from "./pages/Details";
 import NotFound from "./components/NotFound";
 
 // other
