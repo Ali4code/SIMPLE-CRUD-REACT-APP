@@ -2,9 +2,11 @@
 import Home from "./pages/Home";
 import Create from "./pages/Create";
 import ItemDetails from "./pages/ItemDetials";
+import NotFound from "./components/NotFound";
 
 // other
 import {FC} from "react";
+
 
 // interface
 interface Route {
@@ -31,10 +33,17 @@ export const routes: Array<Route> = [
         component: Create
     },
     {
-        key: 'itemDetails-route',
-        title: 'Item Details',
-        path: '/item-details',
+        key: 'details-route',
+        title: 'Post Details',
+        path: '/details',
         enabled: true,
         component: ItemDetails
-    }
+    },
+    {
+        key: 'Not-route',
+        title: 'Item Details',
+        path: "*",
+        enabled: true,
+        component: NotFound
+    },
 ]

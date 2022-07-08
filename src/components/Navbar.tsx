@@ -25,7 +25,8 @@ const Navbar: FC = (): ReactElement => {
   };
 
   const navRoutes = [...routes];
-  navRoutes.pop();
+  navRoutes.pop()
+  navRoutes.pop()
 
   return (
     <Box

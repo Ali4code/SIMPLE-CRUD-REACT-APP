@@ -11,9 +11,7 @@ const Layout = ({ children }: Props) => {
     <>
     <Box height="100vh" display="flex" flexDirection="column">
       <Navbar />
-      
         {children}
-      
       <Footer />
       </Box>
     </>
