@@ -1,9 +1,21 @@
-import AppThemeProvider from "./provider/ThemeProvider";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { routes as appRoutes } from "./routes";
 
 function App() {
-  return <AppThemeProvider>
+  return (
+    <Router>
+      <Routes>
+        {appRoutes.map((route) => (
+          <Route
+            key={route.key}
+            path={route.path}
+            element={<route.component />}
+          />
+        ))}
+      </Routes>
+    </Router>
+  )
     
-  </AppThemeProvider>;
 }
 
 export default App;
