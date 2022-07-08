@@ -58,7 +58,7 @@ export const useCreatePost = ({ title, body, userId }: IApiSingleData) => {
 };
 
 export const useGetSinglePost = (id?: string) => {
-  const [data, setData] = useState<IApiSingleData[]>();
+  const [data, setData] = useState<IApiSingleData>();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState();
 

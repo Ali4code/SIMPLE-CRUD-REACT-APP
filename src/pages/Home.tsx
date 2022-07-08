@@ -1,5 +1,5 @@
 import React, { ReactElement, FC } from "react";
-import { Grid, Typography } from "@mui/material";
+import { Grid } from "@mui/material";
 import { useGetList } from "../hooks/useApi";
 import SinglePost from "../components/SinglePost";
 
