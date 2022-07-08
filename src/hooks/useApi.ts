@@ -6,7 +6,9 @@ export interface IApiSingleData {
   title: string;
   body: string;
 }
-
+interface id {
+  id: string | undefined;
+}
 
 export const useGetList = () => {
   const [data, setData] = useState<IApiSingleData[]>();
@@ -27,7 +29,8 @@ export const useGetList = () => {
 
   return { data, loading, error };
 };
-export const useCreate = ({ title, body, userId }: IApiSingleData) => {
+
+export const useCreatePost = ({ title, body, userId }: IApiSingleData) => {
   const [data, setData] = useState<IApiSingleData>();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState();
@@ -50,6 +53,26 @@ export const useCreate = ({ title, body, userId }: IApiSingleData) => {
       setLoading(false);
       setError(error);
     });
+
+  return { data, loading, error };
+};
+
+export const useGetSinglePost = (id?: string) => {
+  const [data, setData] = useState<IApiSingleData[]>();
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState();
+
+  useEffect(() => {
+    setLoading(true);
+    fetch(`https://jsonplaceholder.typicode.com/posts/${id}`)
+      .then((res) => res.json())
+      .then((data) => setData(data))
+      .then(() => setLoading(false))
+      .catch((error) => {
+        setLoading(false);
+        setError(error);
+      });
+  }, []);
 
   return { data, loading, error };
 };
