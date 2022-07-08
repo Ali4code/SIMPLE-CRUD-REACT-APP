@@ -1,7 +1,7 @@
 // pages
 import Home from "./pages/Home";
 import Create from "./pages/Create";
-import ItemDetails from "./pages/ItemDetials";
+import Details from "./pages/Detials";
 import NotFound from "./components/NotFound";
 
 // other
@@ -35,9 +35,9 @@ export const routes: Array<Route> = [
     {
         key: 'details-route',
         title: 'Post Details',
-        path: '/details',
+        path: '/details/:id',
         enabled: true,
-        component: ItemDetails
+        component: Details
     },
     {
         key: 'Not-route',

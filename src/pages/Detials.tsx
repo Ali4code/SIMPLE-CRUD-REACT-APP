@@ -1,7 +1,7 @@
 import React, {ReactElement, FC} from "react";
 import {Box, Typography} from "@mui/material";
 
-const ItemDetails: FC<any> = (): ReactElement => {
+const Details: FC<any> = (): ReactElement => {
     return (
        
         <Box sx={{
@@ -16,4 +16,4 @@ const ItemDetails: FC<any> = (): ReactElement => {
     );
 };
 
-export default ItemDetails;
+export default Details;

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-interface IApiSingleData {
+export interface IApiSingleData {
   userId: number;
   id?: number;
   title: string;

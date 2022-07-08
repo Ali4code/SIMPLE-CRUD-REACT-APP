@@ -18,6 +18,6 @@ const Layout = ({ children }: Props) => {
 
 export const CustomDiv = styled("div")(({ theme }) => ({
   display: "relative",
-  height: "100vh",
+  background: theme.palette.gray.main
 }));
 export default Layout;
