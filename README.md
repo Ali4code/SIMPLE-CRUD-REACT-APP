@@ -7,7 +7,7 @@ You can find the instrcutions inside of "instruction" folder as a pdf file.
 
 # Design
 
- used React.js and typescript and I also tried to use the TDD approach but due to time limits, I just implement few tests. I used functional components and hooks like useState, useEffect, useCallback. and for api calls i did create Costum hook so or code would be clean and neat, for React UI Component Library, MUI is used with emotion for styling, and project is fully resposive to different screen sizes. I also implement some end-to-end tests with Cypress to test important parts(testable because of not being able to really post or delete or put) of the project. for reducing complexity of project I did not use any state management library like redux.
+ used React.js and typescript and I also tried to wirte some test to demonstrate my fimilarity with writin test and TDD approach even though this project not have complex logic , I just implement few tests. I used functional components and hooks like useState, useEffect, useCallback. and for api calls i did create Costum hook so or code would be clean and neat, for React UI Component Library, MUI is used with emotion for styling, and project is fully resposive to different screen sizes. I also implement some end-to-end tests with Cypress to test important parts(testable because of not being able to really post or delete or put) of the project. for reducing complexity of project I did not use any state management library like redux.
 
 I used GitHub and I create different branches for optional features. I also create PRs and merge branches with squashing.
 
@@ -47,6 +47,10 @@ yarn
 Run the project using: 
 ```bash
 yarn start
+```
+Run the test using: 
+```bash
+yarn test
 ```
 The project is running in:  
 http://localhost:3000
