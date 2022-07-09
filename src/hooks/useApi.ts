@@ -5,10 +5,9 @@ export interface IApiSingleData {
   id?: number;
   title: string;
   body: string;
+  method?: string;
 }
-interface id {
-  id: string | undefined;
-}
+
 
 export const useGetList = () => {
   const [data, setData] = useState<IApiSingleData[]>();
@@ -30,18 +29,18 @@ export const useGetList = () => {
   return { data, loading, error };
 };
 
-export const useCreatePost = ({ title, body, userId }: IApiSingleData) => {
+export const useCreateOrUpdatePost = ({ title, body, userId, method }: IApiSingleData) => {
   const [data, setData] = useState<IApiSingleData>();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState();
 
   setLoading(true);
   fetch("https://jsonplaceholder.typicode.com/posts", {
-    method: "POST",
+    method: method,
     body: JSON.stringify({
-      title: { title },
-      body: { body },
-      userId: { userId },
+      title: title ,
+      body: body,
+      userId: userId,
     }),
     headers: {
       "Content-type": "application/json; charset=UTF-8",
@@ -49,6 +48,7 @@ export const useCreatePost = ({ title, body, userId }: IApiSingleData) => {
   })
     .then((res) => res.json())
     .then((data) => setData(data))
+    .then(() => setLoading(false))
     .catch((error) => {
       setLoading(false);
       setError(error);
@@ -72,7 +72,21 @@ export const useGetSinglePost = (id?: string) => {
         setLoading(false);
         setError(error);
       });
-  }, []);
+  }, [id]);
 
   return { data, loading, error };
 };
+
+
+export const useDeletePost = (id?: string) => {
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState();
+
+  fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, {
+    method: 'DELETE',
+  });
+
+  return { loading, error };
+};
+
+
