@@ -10,79 +10,79 @@ export interface IApiSingleData {
 
 export const useGetList = () => {
   const [data, setData] = useState<IApiSingleData[]>();
-  const [loading, setLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState();
 
   useEffect(() => {
-    setLoading(true);
+    setIsLoading(true);
     fetch("https://jsonplaceholder.typicode.com/posts")
       .then((res) => res.json())
       .then((data) => {
         setData(data);
-        setLoading(false);
+        setIsLoading(false);
       })
       .catch((error) => {
-        setLoading(false);
+        setIsLoading(false);
         setError(error);
       });
   }, []);
 
-  return { data, loading, error };
+  return { data, isLoading, error };
 };
 
 export const useGetSinglePost = (id?: string) => {
   const [data, setData] = useState<IApiSingleData>();
-  const [loading, setLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState();
 
   useEffect(() => {
-    setLoading(true);
+    setIsLoading(true);
     fetch(`https://jsonplaceholder.typicode.com/posts/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setData(data);
-        setLoading(false);
+        setIsLoading(false);
       })
       .catch((error) => {
-        setLoading(false);
+        setIsLoading(false);
         setError(error);
       });
   }, [id]);
 
-  return { data, loading, error };
+  return { data, isLoading, error };
 };
 
 export const useDeletePost = (id?: string) => {
-  const [loading, setLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState();
   const navigate = useNavigate();
 
   const deletePost = useCallback(() => {
-    setLoading(true);
+    setIsLoading(true);
     fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, {
       method: "DELETE",
     })
       .then(() => {
-        setLoading(false);
+        setIsLoading(false);
         navigate("/", { replace: true });
       })
       .catch((error) => {
-        setLoading(false);
+        setIsLoading(false);
         setError(error);
       });
   }, [id,navigate]);
 
-  return { deletePost, loading, error };
+  return { deletePost, isLoading, error };
 };
 
 export const useUpdatePost = (id?: string) => {
   const [data, setData] = useState<IApiSingleData>();
-  const [loading, setLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState();
   const navigate = useNavigate();
 
   const update = useCallback(({ title, body }: IApiSingleData) => {
-    setLoading(true);
+    setIsLoading(true);
     fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, {
       method: "PUT",
       body: JSON.stringify({
@@ -97,28 +97,28 @@ export const useUpdatePost = (id?: string) => {
       .then((res) => res.json())
       .then((data) => setData(data))
       .then(() => {
-        setLoading(false);
+        setIsLoading(false);
         navigate("/", { replace: false });
       })
       .catch((error) => {
-        setLoading(false);
+        setIsLoading(false);
         setError(error);
       });
   }, [id,navigate]);
 
-  return { update, data, loading, error };
+  return { update, data, isLoading, error };
 };
 
 
 
 export const useCreatePost = () => {
   const [data, setData] = useState<IApiSingleData>();
-  const [loading, setLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState();
   const navigate = useNavigate();
 
   const create = useCallback(({ title, body }: IApiSingleData) => {
-    setLoading(true);
+    setIsLoading(true);
     fetch("https://jsonplaceholder.typicode.com/posts", {
       method: "POST",
       body: JSON.stringify({
@@ -133,14 +133,14 @@ export const useCreatePost = () => {
       .then((res) => res.json())
       .then((data) => setData(data))
       .then(() => {
-        setLoading(false);
+        setIsLoading(false);
         navigate("/", { replace: false });
       })
       .catch((error) => {
-        setLoading(false);
+        setIsLoading(false);
         setError(error);
       });
   }, [navigate]);
 
-  return { create, data, loading, error };
+  return { create, data, isLoading, error };
 };
