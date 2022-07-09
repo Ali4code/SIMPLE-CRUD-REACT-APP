@@ -10,7 +10,7 @@ import WithLoader from "../components/ui/WithLoader";
 
 const Details: FC<any> = (): ReactElement => {
   let { id } = useParams();
-  const { data, isLoading, error } = useGetSinglePost(id);
+  const { data, isLoading, error: getError } = useGetSinglePost(id);
   const { deletePost, isLoading: deleteLoading, error: deleteError } = useDeletePost(id);
   const { update, isLoading: updateLoading, error: updateError } = useUpdatePost(id);
 
@@ -18,9 +18,15 @@ const Details: FC<any> = (): ReactElement => {
     title: data?.title || "",
     body: data?.body || "",
   };
+  let error = getError || deleteError || updateError;
 
   return (
-    <WithLoader isLoading={isLoading || deleteLoading|| updateLoading}>
+    <WithLoader isLoading={isLoading || deleteLoading || updateLoading}>
+      {error && (
+        <Typography variant="h6" color="red">
+          {JSON.stringify(error)}
+        </Typography>
+      )}
       <Grid container justifyContent="center" paddingTop={10} color="primary.main">
         <Formik
           enableReinitialize

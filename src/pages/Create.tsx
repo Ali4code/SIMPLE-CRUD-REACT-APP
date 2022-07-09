@@ -16,6 +16,11 @@ const Create: FC<any> = (): ReactElement => {
   return (
     <WithLoader isLoading={isLoading}>
     <Grid container justifyContent="center" paddingTop={10} color="primary.main">
+    {error && (
+                  <Typography variant="h6" color="red">
+                    {JSON.stringify(error)}
+                  </Typography>
+                )}
       <Formik
         initialValues={initialValues}
         onSubmit={(values) => create(values)}
