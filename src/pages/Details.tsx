@@ -1,24 +1,25 @@
 import React, { ReactElement, FC } from "react";
 import { useParams } from "react-router-dom";
-import { useGetSinglePost } from "../hooks/useApi";
+import { useDeletePost, useGetSinglePost } from "../hooks/useApi";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
 import { CustomInputTitle, CustomInputBody } from "../components/ui/CustomInput";
-import { Button, Grid, Typography } from "@mui/material";
-import DeleteIcon from '@mui/icons-material/Delete';
+import { Button, Grid, IconButton, Typography } from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 const Details: FC<any> = (): ReactElement => {
   let { id } = useParams();
   const { data, loading, error } = useGetSinglePost(id);
+  const { deletePost, loading: deleteLoading, error: deleteError } = useDeletePost(id);
 
   const initialValues = {
     title: data?.title || "",
     body: data?.body || "",
   };
-  console.log(initialValues);
+ 
 
   return (
-    <Grid container justifyContent="center"paddingTop={10} color="primary.main">
+    <Grid container justifyContent="center" paddingTop={10} color="primary.main">
       <Formik
         enableReinitialize
         initialValues={initialValues}
@@ -30,7 +31,7 @@ const Details: FC<any> = (): ReactElement => {
       >
         {(props) => (
           <Form>
-            <Grid item xs={12} direction="column">
+            <Grid container item xs={12} direction="column">
               <Typography variant="h4" paddingBottom={1}>
                 Title
               </Typography>
@@ -52,8 +53,10 @@ const Details: FC<any> = (): ReactElement => {
                 sx={{ width: { xs: 280, sm: 500, md: 650 } }}
               />
               <Grid item container paddingTop={5} justifyContent="space-between">
-              <Button variant="contained" >Edit</Button>
-              <DeleteIcon/>
+                <Button variant="contained">Edit</Button>
+                <IconButton onClick={deletePost}>
+                  <DeleteIcon />
+                </IconButton>
               </Grid>
             </Grid>
           </Form>

@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 
 export interface IApiSingleData {
   userId: number;
@@ -7,7 +8,6 @@ export interface IApiSingleData {
   body: string;
   method?: string;
 }
-
 
 export const useGetList = () => {
   const [data, setData] = useState<IApiSingleData[]>();
@@ -18,8 +18,10 @@ export const useGetList = () => {
     setLoading(true);
     fetch("https://jsonplaceholder.typicode.com/posts")
       .then((res) => res.json())
-      .then((data) => setData(data))
-      .then(() => setLoading(false))
+      .then((data) => {
+        setData(data);
+        setLoading(false);
+      })
       .catch((error) => {
         setLoading(false);
         setError(error);
@@ -33,12 +35,13 @@ export const useCreateOrUpdatePost = ({ title, body, userId, method }: IApiSingl
   const [data, setData] = useState<IApiSingleData>();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState();
+  const navigate = useNavigate();
 
   setLoading(true);
   fetch("https://jsonplaceholder.typicode.com/posts", {
     method: method,
     body: JSON.stringify({
-      title: title ,
+      title: title,
       body: body,
       userId: userId,
     }),
@@ -48,7 +51,12 @@ export const useCreateOrUpdatePost = ({ title, body, userId, method }: IApiSingl
   })
     .then((res) => res.json())
     .then((data) => setData(data))
-    .then(() => setLoading(false))
+    .then(() => {
+      setLoading(false);
+      if (method === "POST") {
+        navigate("/", { replace: false });
+      }
+    })
     .catch((error) => {
       setLoading(false);
       setError(error);
@@ -56,6 +64,8 @@ export const useCreateOrUpdatePost = ({ title, body, userId, method }: IApiSingl
 
   return { data, loading, error };
 };
+
+
 
 export const useGetSinglePost = (id?: string) => {
   const [data, setData] = useState<IApiSingleData>();
@@ -66,8 +76,10 @@ export const useGetSinglePost = (id?: string) => {
     setLoading(true);
     fetch(`https://jsonplaceholder.typicode.com/posts/${id}`)
       .then((res) => res.json())
-      .then((data) => setData(data))
-      .then(() => setLoading(false))
+      .then((data) => {
+        setData(data);
+        setLoading(false);
+      })
       .catch((error) => {
         setLoading(false);
         setError(error);
@@ -78,15 +90,27 @@ export const useGetSinglePost = (id?: string) => {
 };
 
 
+
+
 export const useDeletePost = (id?: string) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState();
+  const navigate = useNavigate();
 
+  const deletePost = useCallback(() => {
+    setLoading(true);
   fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, {
-    method: 'DELETE',
-  });
+    method: "DELETE",
+  })
+    .then(() => {setLoading(false)
+      navigate("/", { replace: true })})
+    .catch((error) => {
+      setLoading(false);
+      setError(error);
+    });
+ }, [])
 
-  return { loading, error };
+  
+
+  return {deletePost, loading, error };
 };
-
-
