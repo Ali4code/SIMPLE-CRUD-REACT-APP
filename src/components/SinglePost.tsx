@@ -12,10 +12,10 @@ export default function SinglePost({ title, body , id }: IApiSingleData) {
   return (
     <Grid item xs={12} sm={12} md={6} lg={4} xl={3} padding={2} >
     <StyledCard onClick={()=> navigate(`/details/${id}`)}>
-      <Typography variant="h6" component="h4" fontWeight="700">
+      <Typography data-testid="titleText" variant="h6" component="h4" fontWeight="700">
         {title}
       </Typography>
-      <Typography variant="body2" component="h4">
+      <Typography data-testid="bodyText" variant="body2" component="h4">
        {body}
       </Typography>
     </StyledCard>

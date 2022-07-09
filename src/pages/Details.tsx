@@ -78,7 +78,7 @@ const Details: FC<any> = (): ReactElement => {
                   <Button variant="contained" type="submit">
                     Update
                   </Button>
-                  <IconButton onClick={deletePost}>
+                  <IconButton onClick={deletePost} className="delete-icon">
                     <DeleteIcon />
                   </IconButton>
                 </Grid>
