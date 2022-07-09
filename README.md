@@ -48,9 +48,13 @@ Run the project using:
 ```bash
 yarn start
 ```
-Run the test using: 
+Run unit tests using: 
 ```bash
 yarn test
+```
+Run the e2e tests using: 
+```bash
+yarn cypress open
 ```
 The project is running in:  
 http://localhost:3000
