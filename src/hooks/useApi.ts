@@ -2,11 +2,10 @@ import { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 
 export interface IApiSingleData {
-  userId: number;
+  userId?: number;
   id?: number;
   title: string;
   body: string;
-  method?: string;
 }
 
 export const useGetList = () => {
@@ -27,40 +26,6 @@ export const useGetList = () => {
         setError(error);
       });
   }, []);
-
-  return { data, loading, error };
-};
-
-export const useCreateOrUpdatePost = ({ title, body, userId, method }: IApiSingleData) => {
-  const [data, setData] = useState<IApiSingleData>();
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState();
-  const navigate = useNavigate();
-
-  setLoading(true);
-  fetch("https://jsonplaceholder.typicode.com/posts", {
-    method: method,
-    body: JSON.stringify({
-      title: title,
-      body: body,
-      userId: userId,
-    }),
-    headers: {
-      "Content-type": "application/json; charset=UTF-8",
-    },
-  })
-    .then((res) => res.json())
-    .then((data) => setData(data))
-    .then(() => {
-      setLoading(false);
-      if (method === "POST") {
-        navigate("/", { replace: false });
-      }
-    })
-    .catch((error) => {
-      setLoading(false);
-      setError(error);
-    });
 
   return { data, loading, error };
 };
@@ -113,4 +78,39 @@ export const useDeletePost = (id?: string) => {
   
 
   return {deletePost, loading, error };
+};
+
+
+export const useUpdatePost = (id?:string) => {
+  const [data, setData] = useState<IApiSingleData>();
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState();
+  const navigate = useNavigate();
+
+  const update = useCallback(({ title, body}: IApiSingleData) => {
+  setLoading(true);
+  fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, {
+    method: "PUT",
+    body: JSON.stringify({
+      title: title,
+      body: body,
+      userId: 1,
+    }),
+    headers: {
+      "Content-type": "application/json; charset=UTF-8",
+    },
+  })
+    .then((res) => res.json())
+    .then((data) => setData(data))
+    .then(() => {
+      setLoading(false);
+        navigate("/", { replace: false })
+    })
+    .catch((error) => {
+      setLoading(false);
+      setError(error);
+    });
+  }, [])
+
+  return {update, data, loading, error };
 };
