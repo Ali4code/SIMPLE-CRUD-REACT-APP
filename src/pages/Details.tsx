@@ -1,11 +1,11 @@
 import React, { ReactElement, FC } from "react";
-import { StyledCard } from "../components/SinglePost";
 import { useParams } from "react-router-dom";
 import { useGetSinglePost } from "../hooks/useApi";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
 import { CustomInputTitle, CustomInputBody } from "../components/ui/CustomInput";
-import { Grid, Typography } from "@mui/material";
+import { Button, Grid, Typography } from "@mui/material";
+import DeleteIcon from '@mui/icons-material/Delete';
 
 const Details: FC<any> = (): ReactElement => {
   let { id } = useParams();
@@ -18,8 +18,7 @@ const Details: FC<any> = (): ReactElement => {
   console.log(initialValues);
 
   return (
-    <Grid container alignItems="center" justifyContent="center" alignContent="center" paddingTop={10}>
-    <StyledCard >
+    <Grid container justifyContent="center"paddingTop={10} color="primary.main">
       <Formik
         enableReinitialize
         initialValues={initialValues}
@@ -31,7 +30,7 @@ const Details: FC<any> = (): ReactElement => {
       >
         {(props) => (
           <Form>
-            <Grid item xs={10} direction="column">
+            <Grid item xs={12} direction="column">
               <Typography variant="h4" paddingBottom={1}>
                 Title
               </Typography>
@@ -52,11 +51,14 @@ const Details: FC<any> = (): ReactElement => {
                 maxRows={Infinity}
                 sx={{ width: { xs: 280, sm: 500, md: 650 } }}
               />
+              <Grid item container paddingTop={5} justifyContent="space-between">
+              <Button variant="contained" >Edit</Button>
+              <DeleteIcon/>
+              </Grid>
             </Grid>
           </Form>
         )}
       </Formik>
-    </StyledCard>
     </Grid>
   );
 };
