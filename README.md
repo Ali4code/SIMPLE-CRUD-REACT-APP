@@ -59,6 +59,7 @@ http://localhost:3000
 # Thing's I learn
 There are some things that I learned during this sample project:
 * v6 of react router
+* e2e tests with cypress
 
 
 # Further improvements
