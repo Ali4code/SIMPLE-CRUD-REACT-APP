@@ -9,7 +9,7 @@ You can find the instrcutions inside of "instruction" folder as a pdf file.
 
  used React.js and typescript and I also tried to use the TDD approach but due to time limits, I just implement few tests. I used functional components and hooks like useState, useEffect, useCallback. and for api calls i did create Costum hook so or code would be clean and neat, for React UI Component Library, MUI is used with emotion for styling, and project is fully resposive to different screen sizes. I also implement some end-to-end tests with Cypress to test important parts of the project. for reducing complexity of project i did not use any state management library like redux.
 
-I used GitHub and I create different branches for every feature or bug. I also create PRs and merge branches with squashing.
+I used GitHub and I create different branches for optional features. I also create PRs and merge branches with squashing.
 
 
 # Structure
