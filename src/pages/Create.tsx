@@ -4,15 +4,17 @@ import { Form, Formik } from "formik";
 import * as Yup from "yup";
 import { CustomInputTitle, CustomInputBody } from "../components/ui/CustomInput";
 import { Button, Grid, Typography } from "@mui/material";
+import WithLoader from "../components/ui/WithLoader";
 
 const Create: FC<any> = (): ReactElement => {
-  const { create, loading, error } = useCreatePost();
+  const { create, isLoading, error } = useCreatePost();
 
   const initialValues = {
     title: "",
     body: "",
   };
   return (
+    <WithLoader isLoading={isLoading}>
     <Grid container justifyContent="center" paddingTop={10} color="primary.main">
       <Formik
         initialValues={initialValues}
@@ -69,6 +71,7 @@ const Create: FC<any> = (): ReactElement => {
         )}
       </Formik>
     </Grid>
+    </WithLoader>
   );
 };
 
