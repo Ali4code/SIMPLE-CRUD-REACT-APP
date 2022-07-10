@@ -20,6 +20,8 @@ The followings are the directories of this project:
 `src/layout` contains our general layout for application,
 `src/pages` contains our pages ,
 `src/provider` contains our mui theme provider ,
+`src/test` contains sample unit tests ,
+`cypress` contains e2e test.
 
 
 
