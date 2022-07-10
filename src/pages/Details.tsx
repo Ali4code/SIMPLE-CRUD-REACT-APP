@@ -1,7 +1,7 @@
 import React, { ReactElement, FC } from "react";
 import { useParams } from "react-router-dom";
 import { useUpdatePost, useDeletePost, useGetSinglePost } from "../hooks/useApi";
-import { Form, Formik } from "formik";
+import { ErrorMessage, Form, Formik } from "formik";
 import * as Yup from "yup";
 import { CustomInputTitle, CustomInputBody } from "../components/ui/CustomInput";
 import { Button, Grid, IconButton, Typography } from "@mui/material";
@@ -52,11 +52,7 @@ const Details: FC<any> = (): ReactElement => {
                   maxRows={Infinity}
                   sx={{ width: { xs: 280, sm: 500, md: 650 } }}
                 />
-                {props.errors.title && (
-                  <Typography variant="h6" color="red">
-                    {props.errors.title}
-                  </Typography>
-                )}
+                <ErrorMessage name="title" />
                 <Typography variant="h4" paddingTop={4} paddingBottom={1}>
                   Body
                 </Typography>
@@ -69,11 +65,7 @@ const Details: FC<any> = (): ReactElement => {
                   maxRows={Infinity}
                   sx={{ width: { xs: 280, sm: 500, md: 650 } }}
                 />
-                {props.errors.body && (
-                  <Typography variant="h6" color="red">
-                    {props.errors.body}
-                  </Typography>
-                )}
+                <ErrorMessage name="body" />
                 <Grid item container paddingTop={5} justifyContent="space-between">
                   <Button variant="contained" type="submit">
                     Update

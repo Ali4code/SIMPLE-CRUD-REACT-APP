@@ -1,6 +1,6 @@
 import React, { ReactElement, FC } from "react";
 import { useCreatePost } from "../hooks/useApi";
-import { Form, Formik } from "formik";
+import { ErrorMessage, Form, Formik } from "formik";
 import * as Yup from "yup";
 import { CustomInputTitle, CustomInputBody } from "../components/ui/CustomInput";
 import { Button, Grid, Typography } from "@mui/material";
@@ -44,11 +44,7 @@ const Create: FC<any> = (): ReactElement => {
                 maxRows={Infinity}
                 sx={{ width: { xs: 280, sm: 500, md: 650 } }}
               />
-              {props.errors.title && (
-                <Typography variant="h6" color="red">
-                  {props.errors.title}
-                </Typography>
-              )}
+              <ErrorMessage name="title" />
               <Typography variant="h4" paddingTop={4} paddingBottom={1}>
                 Body
               </Typography>
@@ -61,11 +57,7 @@ const Create: FC<any> = (): ReactElement => {
                 maxRows={Infinity}
                 sx={{ width: { xs: 280, sm: 500, md: 650 } }}
               />
-              {props.errors.body && (
-                <Typography variant="h6" color="red">
-                  {props.errors.body}
-                </Typography>
-              )}
+              <ErrorMessage name="body" />
               <Grid item container paddingTop={5} justifyContent="space-between">
                 <Button variant="contained" type="submit">
                   Post
